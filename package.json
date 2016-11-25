@@ -2,7 +2,7 @@
   "name": "dream-team",
   "version": "0.0.1",
   "scripts": {
-    "dev": "lite-server"
+    "dev": "webpack"
   },
   "dependencies": {
     "angular-ui-router": "^1.0.0-beta.3"

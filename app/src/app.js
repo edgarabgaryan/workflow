@@ -1,6 +1,5 @@
 'use strict';
 
-
 require('./pages/index');
 
 var dreamTeam = angular.module('dreamTeam', ['ui.router', 'pages']);
