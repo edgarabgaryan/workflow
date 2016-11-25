@@ -1,10 +1,17 @@
 'use strict';
 
+var path = require('path');
+
 module.exports = {
-    context: __dirname + "/app/src",
+    context: path.resolve(__dirname + "/app/src"),
     entry: "./app",
     output: {
-        path: __dirname + "/app/dist",
+        path: path.resolve(__dirname + "/app/dist"),
         filename: "build.js"
+    },
+
+    watch: true,
+    watchOptions: {
+        aggregateTimeout: 100
     }
-}
+};
