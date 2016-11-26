@@ -1,8 +1,8 @@
 'use strict';
 
-var module = require('../module');
+var pagesModule = require('../module');
 
-module.component('page2Component', {
+pagesModule.component('page2Component', {
     template: require('./page2.html'),
     controller: [page2Ctrl],
 });

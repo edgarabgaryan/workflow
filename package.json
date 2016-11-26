@@ -10,11 +10,13 @@
     "sels-eduction"
   ],
   "scripts": {
-    "dev": "webpack"
+    "dev": "webpack",
+    "prod": "cross-env NODE_ENV=production webpack"
   },
   "dependencies": {
     "angular": "^1.5.9",
     "angular-ui-router": "^1.0.0-beta.3",
+    "cross-env": "^3.1.3",
     "html-loader": "^0.4.4",
     "node-static": "^0.7.9",
     "path": "^0.12.7",
