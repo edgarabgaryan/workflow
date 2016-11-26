@@ -1,5 +1,8 @@
 'use strict';
 
+var angular = require('angular');
+require('angular-ui-router');
+
 var dreamTeam = angular.module('dreamTeam', [
     'ui.router',
     require('./pages'),

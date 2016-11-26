@@ -1,9 +1,8 @@
 'use strict';
 
-var dreamTeam = require('../module');
-// var dreamTeam = angular.module('dreamTeam')
+var module = require('../module');
 
-dreamTeam.component('page2Component', {
+module.component('page2Component', {
     templateUrl: 'src/pages/page2/page2.html',
     controller: [page2Ctrl],
 });
