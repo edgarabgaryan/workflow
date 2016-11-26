@@ -9,9 +9,8 @@ var dreamTeam = angular.module('dreamTeam', [
 ]);
 
 dreamTeam.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-    $urlRouterProvider.rule( function ($injector, $location) {
+    $urlRouterProvider.rule(function ($injector, $location) {
         var path = $location.path();
-
         if (path === '/' || path === '') {
             return '/page1';
         }

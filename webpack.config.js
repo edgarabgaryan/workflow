@@ -1,6 +1,9 @@
 'use strict';
 
+var webpack = require('webpack');
 var path = require('path');
+
+var NODE_ENV = process.env.NODE_ENV || 'development';
 
 module.exports = {
     context: path.resolve(__dirname + "/app/src"),
@@ -10,10 +13,16 @@ module.exports = {
         filename: "build.js"
     },
 
-    watch: true,
+    watch: NODE_ENV == 'development',
     watchOptions: {
         aggregateTimeout: 100
     },
 
-    devtool: "eval",
+    devtool: NODE_ENV == 'development' ? "eval" : null,
+
+    plugins: [
+        new webpack.DefinePlugin({
+            NODE_ENV: JSON.stringify(NODE_ENV),
+        }),
+    ],
 };
