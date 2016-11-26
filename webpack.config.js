@@ -25,4 +25,13 @@ module.exports = {
             NODE_ENV: JSON.stringify(NODE_ENV),
         }),
     ],
+
+    module: {
+        loaders: [
+            {
+                test: /\.html$/,
+                loader: 'html'
+            },
+        ],
+    },
 };

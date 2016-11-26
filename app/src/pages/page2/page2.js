@@ -3,7 +3,7 @@
 var module = require('../module');
 
 module.component('page2Component', {
-    templateUrl: 'src/pages/page2/page2.html',
+    template: require('./page2.html'),
     controller: [page2Ctrl],
 });
 
