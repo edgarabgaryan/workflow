@@ -1,8 +1,9 @@
 'use strict';
 
-require('./pages/index');
-
-var dreamTeam = angular.module('dreamTeam', ['ui.router', 'pages']);
+var dreamTeam = angular.module('dreamTeam', [
+    'ui.router',
+    require('./pages'),
+]);
 
 dreamTeam.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.rule( function ($injector, $location) {
@@ -44,5 +45,3 @@ dreamTeam.config(['$stateProvider', '$urlRouterProvider', function ($stateProvid
 //     angular.bootstrap(document, ['dreamTeam']);
 // });
 }
-
-module.exports = dreamTeam;
