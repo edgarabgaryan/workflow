@@ -1,6 +1,6 @@
 'use strict';
 
-require('./page2.css');
+require('./page2.styl');
 
 var pagesModule = require('../module');
 

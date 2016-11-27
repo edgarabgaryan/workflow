@@ -4,6 +4,7 @@ var webpack = require('webpack');
 var path = require('path');
 
 var NODE_ENV = process.env.NODE_ENV || 'development';
+var cssLoaders = 'style!css!autoprefixer?browsers=last 5 versions';
 
 module.exports = {
     context: path.resolve(__dirname + "/app/src"),
@@ -35,7 +36,10 @@ module.exports = {
                 loader: 'html',
             }, {
                 test: /\.css/,
-                loader: 'style!css',
+                loader: cssLoaders,
+            }, {
+                test: /\.styl/,
+                loader: cssLoaders + '!stylus',
             }, {
                 test: /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
                 loader: 'file?name=[path][name].[ext]',
