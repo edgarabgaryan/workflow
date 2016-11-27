@@ -39,7 +39,7 @@ module.exports = {
                 loader: cssLoaders,
             }, {
                 test: /\.styl/,
-                loader: cssLoaders + '!stylus',
+                loader: cssLoaders + '!stylus?resolve url',
             }, {
                 test: /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
                 loader: 'file?name=[path][name].[ext]',
