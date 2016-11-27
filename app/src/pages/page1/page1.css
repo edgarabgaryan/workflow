@@ -2,3 +2,9 @@
   color: #067b26;
   border: solid #067b26 5px;
 }
+#image-sb {
+  background-image: url("./sb.png");
+  background-size: cover;
+  height: 555px;
+  width: 555px;
+}
