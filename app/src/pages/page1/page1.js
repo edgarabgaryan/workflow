@@ -1,5 +1,7 @@
 'use strict';
 
+require('./page1.css');
+
 var pagesModule = require('../module');
 
 pagesModule.component('page1Component', {

@@ -10,6 +10,7 @@ module.exports = {
     entry: "./app",
     output: {
         path: path.resolve(__dirname + "/app/dist"),
+        publicPath: './dist/',
         filename: "build.js"
     },
 
@@ -31,7 +32,13 @@ module.exports = {
         loaders: [
             {
                 test: /\.html$/,
-                loader: 'html'
+                loader: 'html',
+            }, {
+                test: /\.css/,
+                loader: 'style!css',
+            }, {
+                test: /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
+                loader: 'file?name=[path][name].[ext]',
             },
         ],
 
