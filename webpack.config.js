@@ -34,6 +34,10 @@ module.exports = {
                 loader: 'html'
             },
         ],
+
+        noParse: [
+            /angular[\\|\/]angular.js/,
+        ],
     },
 };
 
