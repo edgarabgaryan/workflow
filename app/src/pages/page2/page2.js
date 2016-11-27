@@ -12,5 +12,6 @@ pagesModule.component('page2Component', {
 function page2Ctrl() {
     var ctrl = this;
 
+    ctrl.src = './assets/pages/page2/st.png';
     console.log('page 2 ctrl');
 }
