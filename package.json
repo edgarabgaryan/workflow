@@ -4,14 +4,14 @@
   "description": "Project for self education",
   "repository": {
     "type": "git",
-    "url": "-"
+    "url": "https://github.com/edgarabgaryan/workflow"
   },
   "keywords": [
     "sels-eduction"
   ],
   "scripts": {
     "dev": "webpack-dev-server",
-    "reload": "webpack-dev-server --hot --inline --open",
+    "reload": "webpack-dev-server --hot --inline",
     "local": "webpack",
     "prod": "cross-env NODE_ENV=production webpack"
   },

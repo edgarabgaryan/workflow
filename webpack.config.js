@@ -18,7 +18,7 @@ module.exports = {
     entry: "./app",
     output: {
         path: path.resolve(__dirname + "/app/public/assets"),
-        publicPath: './assets/',
+        publicPath: 'assets',
         filename: addHash("build.js", 'hash'),
     },
 
