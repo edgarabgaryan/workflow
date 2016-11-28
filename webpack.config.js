@@ -9,7 +9,8 @@ var cssLoaders = 'css!autoprefixer?browsers=last 5 versions';
 
 function addHash(template, hash) {
     return NODE_ENV == 'production' ?
-        template.replace(/\.[^.]+$/, '.[' + hash + ']$&') : template;
+        template.replace(/\.[^.]+$/, '.[' + hash + ']$&') :
+        template + '?hash=[' + hash + ']';
 }
 
 module.exports = {
@@ -18,7 +19,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname + "/app/public/assets"),
         publicPath: './assets/',
-        filename: addHash("build.js", 'chunkhash'),
+        filename: addHash("build.js", 'hash'),
     },
 
     watch: NODE_ENV == 'development',
@@ -29,7 +30,13 @@ module.exports = {
     devtool: NODE_ENV == 'development' ? "eval" : null,
 
     plugins: [
-        new ExtractTextPlugin(addHash('styles.css', 'contenthash'), {allChunks: true}),
+        new ExtractTextPlugin(
+            addHash('styles.css', 'contenthash'),
+            {
+                allChunks: true,
+                disable: NODE_ENV == 'development',
+            }
+        ),
         new webpack.NoErrorsPlugin(),
         new webpack.DefinePlugin({
             NODE_ENV: JSON.stringify(NODE_ENV),
@@ -43,10 +50,10 @@ module.exports = {
                 loader: 'html',
             }, {
                 test: /\.css/,
-                loader: ExtractTextPlugin.extract(cssLoaders, {publicPath: './'}),
+                loader: ExtractTextPlugin.extract('style', cssLoaders, {publicPath: './'}),
             }, {
                 test: /\.styl/,
-                loader: ExtractTextPlugin.extract(cssLoaders + '!stylus?resolve url', {publicPath: './'}),
+                loader: ExtractTextPlugin.extract('style', cssLoaders + '!stylus?resolve url', {publicPath: './'}),
             }, {
                 test: /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
                 loader: addHash('file?name=[path][name].[ext]', 'hash:6'),
@@ -56,6 +63,15 @@ module.exports = {
         noParse: [
             /angular[\\|\/]angular.js/,
         ],
+    },
+
+    devServer: {
+        host: 'localhost',
+        port: 8080,
+        contentBase: path.resolve(__dirname + "/app/public/"),
+        // historyApiFallback: {
+        //     index: './',
+        // },
     },
 };
 

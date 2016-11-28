@@ -10,7 +10,9 @@
     "sels-eduction"
   ],
   "scripts": {
-    "dev": "webpack",
+    "dev": "webpack-dev-server",
+    "reload": "webpack-dev-server --hot --inline --open",
+    "local": "webpack",
     "prod": "cross-env NODE_ENV=production webpack"
   },
   "dependencies": {
@@ -28,6 +30,7 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^2.3.1",
     "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2",
     "when": "^3.7.7"
   },
   "author": "Edgar Abgaryan",
