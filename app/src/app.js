@@ -31,6 +31,9 @@ dreamTeam.config(['$stateProvider', '$urlRouterProvider', function ($stateProvid
     ;
 }]);
 
+dreamTeam.config(['translateServiceProvider', function (translateServiceProvider) {
+    translateServiceProvider.setDefaultLanguage('ru');
+}]);
 // bootstrap
 {
     document.addEventListener("DOMContentLoaded", function bootstrapApp(event) { // ie9+

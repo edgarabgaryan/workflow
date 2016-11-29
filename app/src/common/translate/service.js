@@ -2,10 +2,18 @@
 
 var translateModule = require('./module');
 
-translateModule.provider('translateService', function() {
+translateModule.provider('translateService', [function() {
     var defaultLanguage = 'en',
         path = 'languages',
         init;
+
+    this.setDefaultLanguage = function (language) {
+        defaultLanguage = language;
+    };
+
+    this.setPathToLocals = function (thePath) {
+        path = thePath;
+    };
 
     this.$get = ['$http', '$rootScope', '$q', function ($http, $rootScope, $q) {
         var service = {};
@@ -51,4 +59,4 @@ translateModule.provider('translateService', function() {
 
         return service;
     }];
-});
+}]);
