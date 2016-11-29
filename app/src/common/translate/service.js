@@ -4,32 +4,36 @@ var translateModule = require('./module');
 
 translateModule.provider('translateService', function() {
     var defaultLanguage = 'en',
-        path = 'languages';
+        path = 'languages',
+        init;
 
     this.$get = ['$http', '$rootScope', '$q', function ($http, $rootScope, $q) {
         var service = {};
         var dictionary,
-            currentLanguage;
+            currentLanguage,
+            loadingLanguage;
 
         var aborter = $q.defer();
 
         service.loadDictionary = function(language) {
+            init = true;
             language = language || defaultLanguage;
 
-            if (language == currentLanguage) {
+            if (language == loadingLanguage) {
                 return;
             }
+            loadingLanguage = language;
 
             aborter.resolve();
             aborter = $q.defer();
 
-            dictionary = $http.get(path + '/' + language + '.json', {timeout: aborter.promise}).then(
+            $http.get(path + '/' + language + '.json', {timeout: aborter.promise}).then(
                 function (response) {
                     currentLanguage = language;
+                    dictionary = response.data;
                     // $emit for performance reasons
                     $rootScope.$emit('translateService:loaded');
-                    console.log(language, 'Json loaded ' + currentLanguage);
-                    return response.data;
+                    return response;
                 },
                 function (response) {
                     console.log(language, 'Failed to load json file', response);
@@ -39,6 +43,9 @@ translateModule.provider('translateService', function() {
         };
 
         service.getDictionary = function () {
+            if (!init) {
+                service.loadDictionary();
+            }
             return dictionary;
         };
 

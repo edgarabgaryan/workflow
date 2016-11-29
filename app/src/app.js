@@ -31,12 +31,6 @@ dreamTeam.config(['$stateProvider', '$urlRouterProvider', function ($stateProvid
     ;
 }]);
 
-dreamTeam.run(['translateService', function (translateService) {
-    translateService.loadDictionary();
-    translateService.loadDictionary('en');
-    translateService.loadDictionary('ru');
-}]);
-
 // bootstrap
 {
     document.addEventListener("DOMContentLoaded", function bootstrapApp(event) { // ie9+
