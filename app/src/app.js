@@ -6,6 +6,7 @@ require('angular-ui-router');
 var dreamTeam = angular.module('dreamTeam', [
     'ui.router',
     require('./pages'),
+    require('./common/translate'),
 ]);
 
 dreamTeam.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
@@ -28,6 +29,10 @@ dreamTeam.config(['$stateProvider', '$urlRouterProvider', function ($stateProvid
         template: '<div id="page404">404</div>',
     })
     ;
+}]);
+
+dreamTeam.run(['translateService', function (translateService) {
+    translateService.loadDictionary();
 }]);
 
 // bootstrap
