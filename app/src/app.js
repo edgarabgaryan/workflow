@@ -6,7 +6,7 @@ require('angular-ui-router');
 var dreamTeam = angular.module('dreamTeam', [
     'ui.router',
     require('./pages'),
-    require('./common/translate'),
+    require('./common'),
 ]);
 
 dreamTeam.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
