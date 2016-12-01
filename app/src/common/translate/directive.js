@@ -9,15 +9,9 @@ translateModule.directive('t', ['$rootScope', 'translateService', function ($roo
         scope: {
             t: '@',
         },
-        link: function (scope) {
+        link: function (scope, elem, attrs) {
             function setValue() {
-                var dictionary = translateService.getDictionary();
-
-                if (dictionary && dictionary[scope.t]) {
-                    scope.value = dictionary[scope.t];
-                } else {
-                    scope.value = scope.t;
-                }
+                scope.value = translateService.getValue(scope.t, attrs.tValues);
             }
             setValue();
             $rootScope.$on('translateService:loaded', setValue);
