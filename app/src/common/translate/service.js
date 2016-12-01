@@ -18,37 +18,40 @@ translateModule.provider('translateService', [function() {
     this.$get = ['$http', '$rootScope', '$q', function ($http, $rootScope, $q) {
         var service = {};
         var dictionary,
-            currentLanguage,
-            loadingLanguage;
+            currentLanguage;
 
         var aborter = $q.defer();
 
         service.loadDictionary = function(language) {
             init = true;
-            language = language || defaultLanguage;
+            language = language || currentLanguage || defaultLanguage;
 
-            if (language == loadingLanguage) {
+            if (language == currentLanguage) {
                 return;
             }
-            loadingLanguage = language;
+            var previousLanguage = currentLanguage;
+            currentLanguage = language;
 
+            // abort previous request
             aborter.resolve();
             aborter = $q.defer();
 
-            $http.get(path + '/' + language + '.json', {timeout: aborter.promise}).then(
+            return $http.get(path + '/' + language + '.json', {timeout: aborter.promise}).then(
                 function (response) {
-                    currentLanguage = language;
                     dictionary = response.data;
                     // $emit for performance reasons
                     $rootScope.$emit('translateService:loaded');
                     return response;
                 },
                 function (response) {
+                    currentLanguage = previousLanguage;
+                    $rootScope.$emit('translateService:fail', previousLanguage);
                     console.log(language, 'Failed to load json file', response);
                     return response;
                 }
             );
         };
+        service.changeLanguage = service.loadDictionary;
 
         service.getDictionary = function () {
             if (!init) {

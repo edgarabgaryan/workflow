@@ -16,6 +16,19 @@ dreamTeam.config(['$stateProvider', '$urlRouterProvider', function ($stateProvid
             return '/page1';
         }
     });
+
+    var originalState = $stateProvider.state;
+    $stateProvider.state = function (name, params) {
+        params = params || {};
+        params.resolve = params.resolve || {};
+        params.dictionaryLoading = ['translateService', function (translateService) {
+            return translateService.loadDictionary();
+        }];
+
+        return originalState.call(this, name, params);
+    };
+
+
     $stateProvider.state('page1', {
         url: '/page1',
         component: 'page1Component',
