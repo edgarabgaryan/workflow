@@ -18,7 +18,8 @@ translateModule.provider('translateService', [function() {
     this.$get = ['$http', '$rootScope', '$q', function ($http, $rootScope, $q) {
         var service = {};
         var dictionary,
-            currentLanguage;
+            currentLanguage,
+            promise;
 
         var aborter = $q.defer();
 
@@ -27,7 +28,7 @@ translateModule.provider('translateService', [function() {
             language = language || currentLanguage || defaultLanguage;
 
             if (language == currentLanguage) {
-                return;
+                return promise;
             }
             var previousLanguage = currentLanguage;
             currentLanguage = language;
@@ -36,7 +37,7 @@ translateModule.provider('translateService', [function() {
             aborter.resolve();
             aborter = $q.defer();
 
-            return $http.get(path + '/' + language + '.json', {timeout: aborter.promise}).then(
+            return promise = $http.get(path + '/' + language + '.json', {timeout: aborter.promise}).then(
                 function (response) {
                     dictionary = response.data;
                     // $emit for performance reasons
