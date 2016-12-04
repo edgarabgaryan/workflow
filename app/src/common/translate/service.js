@@ -80,8 +80,12 @@ translateModule.provider('translateService', [function() {
             } else {
                 result = key;
             }
-            
+
             return result;
+        };
+
+        service.getCurrentLanguage = function () {
+            return currentLanguage;
         };
 
         return service;
