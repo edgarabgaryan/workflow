@@ -14,7 +14,11 @@ translateModule.directive('t', ['$rootScope', 'translateService', function ($roo
                 scope.value = translateService.getValue(scope.t, attrs.tValues);
             }
             setValue();
-            $rootScope.$on('translateService:loaded', setValue);
+            var removeListener = $rootScope.$on('translateService:loaded', setValue);
+
+            scope.$on('$destroy', function() {
+                removeListener();
+            });
         },
     };
 }]);
