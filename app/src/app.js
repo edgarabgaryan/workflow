@@ -30,22 +30,27 @@ dreamTeam.config(['$stateProvider', '$urlRouterProvider', function ($stateProvid
     };
 
 
-    $stateProvider.state('main', {
-        component: 'mainLayout',
-    }).state('page1', {
-        parent: 'main',
-        url: '/page1',
-        component: 'page1Component',
-    })
-    .state('page2', {
-        parent: 'main',
-        url: '/page2',
-        component: 'page2Component',
-    })
-    .state('404', {
-        url: '*path',
-        template: '<div id="page404">404</div>',
-    })
+    $stateProvider
+        .state('main', {
+            component: 'mainLayout',
+        }).state('page1', {
+            parent: 'main',
+            url: '/page1',
+            component: 'page1Component',
+        })
+        .state('page2', {
+            parent: 'main',
+            url: '/page2',
+            component: 'page2Component',
+        })
+        .state('login', {
+            url: '/login',
+            component: 'loginComponent',
+        })
+        .state('404', {
+            url: '*path',
+            template: '<div id="page404">404</div>',
+        })
     ;
 }]);
 

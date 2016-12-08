@@ -1,0 +1,12 @@
+<form ng-submit="$ctrl.submit()" id="login-form">
+    <label>Login</label>
+    <input ng-model="$ctrl.login" type="text">
+    <label>Password</label>
+    <input ng-model="$ctrl.password" type="password">
+    <label>Remember me</label>
+    <input ng-model="$ctrl.remember" type="checkbox">
+
+    <!--<input type="submit" value="Login">-->
+    <!--button in translation reasons-->
+    <button ng-click="$ctrl.submit()"><span>Login</span></button>
+</form>
