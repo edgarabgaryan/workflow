@@ -17,6 +17,7 @@ dreamTeam.config(['$stateProvider', '$urlRouterProvider', function ($stateProvid
         }
     });
 
+    // always resolve translateService
     var originalState = $stateProvider.state;
     $stateProvider.state = function (name, params) {
         params = params || {};
@@ -29,11 +30,15 @@ dreamTeam.config(['$stateProvider', '$urlRouterProvider', function ($stateProvid
     };
 
 
-    $stateProvider.state('page1', {
+    $stateProvider.state('main', {
+        component: 'mainLayout',
+    }).state('page1', {
+        parent: 'main',
         url: '/page1',
         component: 'page1Component',
     })
     .state('page2', {
+        parent: 'main',
         url: '/page2',
         component: 'page2Component',
     })
