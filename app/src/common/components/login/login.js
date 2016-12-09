@@ -6,13 +6,20 @@ var module = require('../../module');
 
 module.component('loginComponent', {
     template: require('./login.html'),
-    controller: [loginCtrl],
+    controller: ['$state', 'currentUserService', loginCtrl],
 });
 
-function loginCtrl() {
+function loginCtrl($state, currentUserService) {
     var ctrl = this;
 
     ctrl.submit = function () {
-        console.log('submit');
+        currentUserService.login(ctrl.username, ctrl.password).then(
+            function (result) {
+                console.log(1, result);
+                $state.go('page1');
+            }, function (error) {
+                console.log(2, error);
+            }
+        )
     };
 }
