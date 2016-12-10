@@ -61,22 +61,15 @@ translateModule.provider('translateService', [function() {
             return dictionary;
         };
 
-        service.getValue = function (key, variables) {
+        service.getValue = function (key, variablesObjet) {
             service.getDictionary();
             var result;
             if (dictionary && dictionary[key]) {
                 result = dictionary[key];
-                if (variables) {
-                    try {
-                        var variablesObjet = JSON.parse(variables);
-                        angular.forEach(variablesObjet, function (value, key) {
-                            result = result.replace(new RegExp('{{' + key + '}}', 'g'), value);
-                        });
-                    } catch (r) {
-                        console.log('Failed to parse translate variables: "' + variables + '"');
-                        return key;
-                    }
-                }
+
+                angular.forEach(variablesObjet, function (value, key) {
+                    result = result.replace(new RegExp('{{' + key + '}}', 'g'), value);
+                });
             } else {
                 result = key;
             }

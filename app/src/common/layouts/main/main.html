@@ -5,5 +5,5 @@
     <button ng-click="$ctrl.logout()">Logout</button>
 </div>
 <translate-switcher></translate-switcher>
-<span t="hello_n" t-values="{{ {name: 'Друг'} }}"></span>
+<span t="hello_n" t-values="{name: $ctrl.user.name.first}"></span>
 <ui-view></ui-view>

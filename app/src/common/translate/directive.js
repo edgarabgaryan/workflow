@@ -8,10 +8,11 @@ translateModule.directive('t', ['$rootScope', 'translateService', function ($roo
         template: '{{value}}',
         scope: {
             t: '@',
+            tValues: '<',
         },
-        link: function (scope, elem, attrs) {
+        link: function (scope) {
             function setValue() {
-                scope.value = translateService.getValue(scope.t, attrs.tValues);
+                scope.value = translateService.getValue(scope.t, scope.tValues);
             }
             setValue();
             var removeListener = $rootScope.$on('translateService:loaded', setValue);
