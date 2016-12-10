@@ -13,7 +13,7 @@ function loginCtrl($state, currentUserService) {
     var ctrl = this;
 
     ctrl.submit = function () {
-        currentUserService.login(ctrl.username, ctrl.password).then(
+        currentUserService.login(ctrl.username, ctrl.password, ctrl.remember).then(
             function (result) {
                 console.log(1, result);
                 $state.go('page1');

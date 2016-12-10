@@ -9,7 +9,7 @@ function currentUserService ($q, $state, databaseService) {
 
     var currentUser;
 
-    service.login = function (username, password) {
+    service.login = function (username, password, remember) {
         return databaseService.getUsers().then(
             function (users) {
                 var user = _.find(users, {login: {username: username}});
@@ -22,7 +22,10 @@ function currentUserService ($q, $state, databaseService) {
                     return $q.reject({password: ['Wrong password']});
                 }
 
-                localStorage.setItem('currentUsername', user.login.username);
+                if (remember) {
+                    localStorage.setItem('currentUsername', user.login.username);
+                }
+
                 return currentUser = user;
             }, function () {
                 return {errors: ['Failed to authenticate. Try later please']}
@@ -37,9 +40,29 @@ function currentUserService ($q, $state, databaseService) {
     };
 
     service.isAuthenticated = function () {
-        return !!localStorage.getItem('currentUsername');
+        return !!currentUser || !!localStorage.getItem('currentUsername');
     };
 
     service.get = function () {
+        if (currentUser) {
+            return $q.when(currentUser);
+        }
+
+        if (localStorage.getItem('currentUsername')) {
+            return databaseService.getUsers().then(
+                function (users) {
+                    currentUser = _.find(users, {login: {username: localStorage.getItem('currentUsername')}});
+
+                    if (currentUser) {
+                        return currentUser;
+                    }
+
+                    localStorage.removeItem('currentUsername');
+                    return $q.reject();
+                }
+            );
+        }
+
+        $q.reject();
     };
 }

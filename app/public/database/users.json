@@ -14,8 +14,8 @@
     },
     "email": "eleanor.thompson@example.com",
     "login": {
-      "username": "bluebutterfly721",
-      "password": "revenge",
+      "username": "user",
+      "password": "pass",
       "salt": "pu2FF1el",
       "md5": "034cb9969258800ec02c9902b16bc111",
       "sha1": "b928dc7001c5826e1822c9243ed58663f94485a5",

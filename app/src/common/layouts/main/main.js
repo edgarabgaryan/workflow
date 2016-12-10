@@ -12,6 +12,12 @@ module.component('mainLayout', {
 function mainLayoutCtrl(currentUserService) {
     var ctrl = this;
 
+    ctrl.user;
+    currentUserService.get().then(function (user) {
+        ctrl.user = user;
+    });
+
+
     ctrl.logout = function () {
         currentUserService.logout();
     };
