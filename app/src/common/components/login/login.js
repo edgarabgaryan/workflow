@@ -12,13 +12,14 @@ module.component('loginComponent', {
 function loginCtrl($state, currentUserService) {
     var ctrl = this;
 
+    ctrl.errors;
+
     ctrl.submit = function () {
         currentUserService.login(ctrl.username, ctrl.password, ctrl.remember).then(
             function (result) {
-                console.log(1, result);
                 $state.go('page1');
-            }, function (error) {
-                console.log(2, error);
+            }, function (errors) {
+                ctrl.errors = errors;
             }
         )
     };

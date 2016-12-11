@@ -1,12 +1,30 @@
 <form ng-submit="$ctrl.submit()" id="login-form">
-    <label>Login</label>
-    <input ng-model="$ctrl.username" type="text">
-    <label>Password</label>
-    <input ng-model="$ctrl.password" type="password">
-    <label>Remember me</label>
-    <input ng-model="$ctrl.remember" type="checkbox">
+    <div>
+        <label>Username</label>
+        <input ng-model="$ctrl.username" type="text">
+        <div ng-show="$ctrl.errors.username" class="errors">
+            <ul>
+                <li ng-repeat="error in $ctrl.errors.username">
+                    {{error}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <label>Password</label>
+        <input ng-model="$ctrl.password" type="password">
+        <div ng-show="$ctrl.errors.password" class="errors">
+            <ul>
+                <li ng-repeat="error in $ctrl.errors.password">
+                    {{error}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <label>Remember me</label>
+        <input ng-model="$ctrl.remember" type="checkbox">
+    </div>
 
-    <!--<input type="submit" value="Login">-->
-    <!--button in translation reasons-->
     <button>Login</button>
 </form>
