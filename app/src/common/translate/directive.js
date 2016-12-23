@@ -17,6 +17,8 @@ translateModule.directive('t', function ($rootScope, translateService) {
             setValue();
             var removeListener = $rootScope.$on('translateService:loaded', setValue);
 
+            scope.$watch('tValues', setValue);
+
             scope.$on('$destroy', function() {
                 removeListener();
             });
