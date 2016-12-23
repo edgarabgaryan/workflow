@@ -6,7 +6,7 @@ var module = require('../../module');
 
 module.component('mainLayout', {
     template: require('./main.html'),
-    controller: ['currentUserService', mainLayoutCtrl],
+    controller: mainLayoutCtrl,
 });
 
 function mainLayoutCtrl(currentUserService) {

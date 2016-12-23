@@ -2,7 +2,7 @@
 
 var module = require('../module');
 
-module.service('currentUserService', ['$q', '$state', 'databaseService', currentUserService]);
+module.service('currentUserService', currentUserService);
 
 function currentUserService ($q, $state, databaseService) {
     var service = this;

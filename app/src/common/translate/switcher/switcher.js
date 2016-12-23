@@ -4,7 +4,7 @@ var translateModule = require('./../module');
 
 translateModule.component('translateSwitcher', {
     template: require('./switcher.html'),
-    controller: ['$rootScope', 'translateService', switcherCtrl],
+    controller: switcherCtrl,
 });
 
 function switcherCtrl ($rootScope, translateService) {

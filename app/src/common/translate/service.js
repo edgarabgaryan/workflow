@@ -2,7 +2,7 @@
 
 var translateModule = require('./module');
 
-translateModule.provider('translateService', [function() {
+translateModule.provider('translateService', function() {
     var defaultLanguage = 'en',
         path = 'languages',
         init;
@@ -83,4 +83,4 @@ translateModule.provider('translateService', [function() {
 
         return service;
     }];
-}]);
+});

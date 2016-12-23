@@ -2,7 +2,7 @@
 
 var translateModule = require('./module');
 
-translateModule.directive('t', ['$rootScope', 'translateService', function ($rootScope, translateService) {
+translateModule.directive('t', function ($rootScope, translateService) {
     return {
         restrict: 'A',
         template: '{{value}}',
@@ -22,4 +22,4 @@ translateModule.directive('t', ['$rootScope', 'translateService', function ($roo
             });
         },
     };
-}]);
+});

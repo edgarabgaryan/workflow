@@ -12,8 +12,8 @@ var dreamTeam = angular.module('dreamTeam', [
 
 dreamTeam.config(require('./routes'));
 
-dreamTeam.config(['translateServiceProvider', function (translateServiceProvider) {
+dreamTeam.config(function (translateServiceProvider) {
     translateServiceProvider.setDefaultLanguage('ru');
-}]);
+});
 
 require('./bootstrap');

@@ -2,7 +2,7 @@
 
 var module = require('../module');
 
-module.service('databaseService', ['$http', '$q', databaseService]);
+module.service('databaseService', databaseService);
 
 function databaseService ($http, $q) {
     var service = this;

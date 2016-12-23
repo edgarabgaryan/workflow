@@ -6,7 +6,7 @@ var pagesModule = require('../module');
 
 pagesModule.component('page1Component', {
     template: require('./page1.html'),
-    controller: [page1Ctrl],
+    controller: page1Ctrl,
 });
 
 function page1Ctrl() {

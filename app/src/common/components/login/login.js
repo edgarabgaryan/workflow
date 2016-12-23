@@ -6,7 +6,7 @@ var module = require('../../module');
 
 module.component('loginComponent', {
     template: require('./login.html'),
-    controller: ['$state', 'currentUserService', loginCtrl],
+    controller: loginCtrl,
 });
 
 function loginCtrl($state, currentUserService) {

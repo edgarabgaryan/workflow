@@ -2,9 +2,8 @@
 
 module.exports =  routes;
 
-routes.$inject = ['$stateProvider', '$urlRouterProvider'];
-
 function routes ($stateProvider, $urlRouterProvider) {
+    "ngInject";
     $urlRouterProvider.rule(function ($injector, $location) {
         var path = $location.path();
         if (path === '/' || path === '') {
