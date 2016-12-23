@@ -2,6 +2,7 @@
 
 require('./services/database');
 require('./services/current-user');
+require('./services/security');
 
 require('./layouts/main/main');
 

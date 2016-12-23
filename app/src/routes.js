@@ -28,11 +28,17 @@ function routes ($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('main', {
             component: 'mainLayout',
-        }).state('page1', {
-        parent: 'main',
-        url: '/page1',
-        component: 'page1Component',
-    })
+            resolve: {
+                security: ['securityService', function (securityService) {
+                    return securityService.check(securityService.AUTHED);
+                }],
+            },
+        })
+        .state('page1', {
+            parent: 'main',
+            url: '/page1',
+            component: 'page1Component',
+        })
         .state('page2', {
             parent: 'main',
             url: '/page2',
@@ -41,6 +47,11 @@ function routes ($stateProvider, $urlRouterProvider) {
         .state('login', {
             url: '/login',
             component: 'loginComponent',
+            resolve: {
+                security: ['securityService', function (securityService) {
+                    return securityService.check(securityService.UNAUTHED);
+                }],
+            },
         })
         .state('404', {
             url: '*path',

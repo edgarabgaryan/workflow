@@ -63,6 +63,6 @@ function currentUserService ($q, $state, databaseService) {
             );
         }
 
-        $q.reject();
+        return $q.reject();
     };
 }
