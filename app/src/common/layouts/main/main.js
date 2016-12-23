@@ -12,10 +12,14 @@ module.component('mainLayout', {
 function mainLayoutCtrl(currentUserService) {
     var ctrl = this;
 
-    ctrl.user;
-    currentUserService.get().then(function (user) {
-        ctrl.user = user;
-    });
+    currentUserService.get().then(
+        function (user) {
+            ctrl.user = user;
+            console.log(1, user);
+        }, function (reason) {
+            console.log(2, reason);
+        }
+    );
 
 
     ctrl.logout = function () {
