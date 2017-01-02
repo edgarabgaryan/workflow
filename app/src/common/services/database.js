@@ -7,38 +7,49 @@ module.service('databaseService', databaseService);
 function databaseService ($http, $q) {
     var service = this;
 
-    var users;
+    var entities = {
+        users: null,
+    };
 
+    // shortcuts for 'get'. It is a way to remove old method 'getUsers' and add method common 'get'
+    // by refactoring only this file. Old calls of databaseService.getUsers works in same way
     service.getUsers = function () {
-        if (users)  {
-            return $q.when(users);
+        return service.get('users')
+    };
+    service.getTeams = function () {
+        return service.get('teams')
+    };
+
+    service.get = function (entitiesName) {
+        if (entities[entitiesName])  {
+            return $q.when(entities[entitiesName]);
         }
 
         var deferred = $q.defer();
         // if (localStorage in window)
-        var usersStr = localStorage.getItem('db-users');
+        var asJson = localStorage.getItem('db-' + entitiesName);
 
-        if (usersStr) {
+        if (asJson) {
             try {
-                users = JSON.parse(usersStr, function(key, value) {
+                entities[entitiesName] = JSON.parse(asJson, function(key, value) {
                     if (key == 'registered') {
                         return new Date(value);
                     }
                     return value;
                 });
 
-                deferred.resolve(users);
+                deferred.resolve(entities[entitiesName]);
             } catch (error) {
-                localStorage.removeItem('db-users');
+                localStorage.removeItem('db-' + entitiesName);
             }
         }
 
-        if (!users) {
-            $http.get('database/users.json').then(
+        if (!entities[entitiesName]) {
+            $http.get('database/' + entitiesName + '.json').then(
                 function (response) {
-                    users = response.data;
-                    localStorage.setItem('db-users', JSON.stringify(users));
-                    deferred.resolve(users);
+                    entities[entitiesName] = response.data;
+                    localStorage.setItem('db-' + entitiesName, JSON.stringify(entities[entitiesName]));
+                    deferred.resolve(entities[entitiesName]);
                 },
                 function (response) {
                     deferred.reject(response);

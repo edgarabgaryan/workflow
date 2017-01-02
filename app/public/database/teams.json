@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Alpha",
+    "descrption": "First",
+    "members": [
+      "eleanor.thompson@example.com",
+      "willianne.doggen@example.com"
+    ]
+  },
+  {
+    "name": "Beta",
+    "descrption": "Much better",
+    "members": [
+      "marion.bernard@example.com",
+      "jacob.ennis@example.com",
+      "maria.ebert@example.com"
+    ]
+  }
+]
