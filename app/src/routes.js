@@ -43,13 +43,23 @@ function routes ($stateProvider, $urlRouterProvider) {
             url: '/page2',
             component: 'page2Component',
         })
+        .state('teams', {
+            parent: 'main',
+            url: '/teams',
+            component: 'teamsPageComponent',
+            resolve: {
+                teams: function (databaseService) {
+                    return databaseService.getTeams();
+                },
+            },
+        })
         .state('login', {
             url: '/login',
             component: 'loginComponent',
             resolve: {
-                security: ['securityService', function (securityService) {
+                security: function (securityService) {
                     return securityService.check(securityService.UNAUTHED);
-                }],
+                },
             },
         })
         .state('404', {
